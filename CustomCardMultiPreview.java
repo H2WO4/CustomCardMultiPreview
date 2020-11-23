@@ -48,7 +48,7 @@ public abstract class CustomCardMultiPreview extends CustomCard {
                 } else {
                     this.cardToPreview.get(i).current_x = this.current_x - (IMG_WIDTH / 2.0F + IMG_WIDTH / 2.0F * 0.8F + 16.0F) * this.drawScale;
                 }
-                this.cardToPreview.get(i).current_y = this.current_y + (IMG_HEIGHT / 2.0F - IMG_HEIGHT / 2.0F * 0.8F) - (360.0F * i * size) * this.drawScale;
+                this.cardToPreview.get(i).current_y = this.current_y + (IMG_HEIGHT / 2.0F - IMG_HEIGHT / 2.0F * 0.8F) + (360.0F * i * size) * this.drawScale;
                 this.cardToPreview.get(i).drawScale = tmpScale * size;
                 this.cardToPreview.get(i).render(sb);
             }
