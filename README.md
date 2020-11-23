@@ -9,9 +9,8 @@ Then, in your constructor, adds the cards to this.cardToPreview.</p>
 
 <p>Exemple:</p>
 
-> <p>this.cardToPreview.add(new Wound());<br>
-> this.cardToPreview.add(new Dazed());
-</p>
+> `this.cardToPreview.add(new Wound());`<br>
+> `this.cardToPreview.add(new Dazed());`
 
 <br>
 
