@@ -1,4 +1,4 @@
-package BoosterPacks.cards;
+// package yourModID.cards;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
