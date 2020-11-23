@@ -4,10 +4,11 @@
 <br>
 <p>In order to create a multi-preview card, simply extends from this class.<br>
 Then, in your constructor, adds the cards to this.cardToPreview.</p>
-</p>Exemple:</p>
+<p>Exemple:</p>
+<p>
 > this.cardToPreview.add(new Wound());<br>
 > this.cardToPreview.add(new Dazed());
-
+</p>
 <br>
 <p>Known issues:
 
