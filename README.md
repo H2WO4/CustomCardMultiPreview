@@ -16,9 +16,8 @@ Then, in your constructor, adds the cards to this.cardToPreview.</p>
 
 <p>Known issues:
 
-- Cards generate in front of the selection arrows in the compendium
-- If there is more than 3 cards, they will go offscreen
-- Using the Upgraded option in the compedium will not update cards in the small Preview
+- More than 3 cards are not currently supported currently
+- Using the Upgraded option in the Compedium will not update cards in the small preview
 
 </p>
 <br>
