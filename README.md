@@ -5,12 +5,14 @@
 <br>
 
 <p>In order to create a multi-preview card, simply extends from this class.<br>
-Then, in your constructor, adds the cards to this.cardToPreview.</p>
+Then, in your constructor, adds the cards to `this.cardToPreview`.</p>
 
-<p>Exemple:</p>
+<p>Example:</p>
 
 > `this.cardToPreview.add(new Wound());`<br>
-> `this.cardToPreview.add(new Dazed());`
+> `this.cardToPreview.add(new Dazed());`<br><br>
+There also is an example card `Ravage.class` in this repository.
+
 
 <br>
 
