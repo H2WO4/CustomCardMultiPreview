@@ -12,8 +12,7 @@ Then, in your constructor, adds the cards to `this.cardToPreview`.</p>
 > `this.cardToPreview.add(new Wound());`<br>
 > `this.cardToPreview.add(new Dazed());`<br>
 <br>
-There also is an example card `Ravage.class` in this repository.
-
+There also is an example card `Ravage.class` in this repository.<br>
 
 <br>
 
