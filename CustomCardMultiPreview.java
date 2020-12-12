@@ -47,11 +47,11 @@ public abstract class CustomCardMultiPreview extends CustomCard {
             if (AbstractDungeon.player == null || !AbstractDungeon.player.isDraggingCard) {
                 float tmpScale = this.drawScale * 0.8F;
                 if (this.current_x > (float)Settings.WIDTH * 0.75F) {
-                    this.cardToPreview.get(i).current_x = (this.current_x + (IMG_WIDTH / 2.0F + IMG_WIDTH / 2.0F * 0.8F + 16.0F) - this.xMulti[i] * Settings.scale) * this.drawScale;
+                    this.cardToPreview.get(i).current_x = (this.current_x + (IMG_WIDTH / 2.0F + IMG_WIDTH / 2.0F * 0.8F + 16.0F) - this.xMulti[i] * Settings.scale);
                 } else {
-                    this.cardToPreview.get(i).current_x = (this.current_x - (IMG_WIDTH / 2.0F + IMG_WIDTH / 2.0F * 0.8F + 16.0F) + this.xMulti[i] * Settings.scale) * this.drawScale;
+                    this.cardToPreview.get(i).current_x = (this.current_x - (IMG_WIDTH / 2.0F + IMG_WIDTH / 2.0F * 0.8F + 16.0F) + this.xMulti[i] * Settings.scale);
                 }
-                this.cardToPreview.get(i).current_y = (this.current_y + (IMG_HEIGHT / 2.0F - IMG_HEIGHT / 2.0F * 0.8F) + this.yMulti[i] * Settings.scale) * this.drawScale;
+                this.cardToPreview.get(i).current_y = (this.current_y + (IMG_HEIGHT / 2.0F - IMG_HEIGHT / 2.0F * 0.8F) + this.yMulti[i] * Settings.scale);
                 this.cardToPreview.get(i).drawScale = tmpScale;
                 this.cardToPreview.get(i).render(sb);
             }
