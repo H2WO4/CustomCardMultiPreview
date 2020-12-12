@@ -16,8 +16,9 @@ Then, in your constructor, adds the cards to this.cardToPreview.</p>
 
 <p>Known issues:
 
-- More than 3 cards are not currently supported currently
-- Using the Upgraded option in the Compedium will not update cards in the small preview
+- More than 5 cards are not supported.
+- Support for more is not considered.
+- Using the Upgraded option in the Compedium will not update cards in the small preview.
 
 </p>
 <br>
