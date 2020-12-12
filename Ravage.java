@@ -1,60 +1,59 @@
 package yourMod.cards;
-
-import yourMod.yourMod;
-import yourMod.cards.CustomCardMultiPreview;
 import basemod.abstracts.CustomCard;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Dazed;
-import com.megacrit.cardcrawl.cards.status.Wound;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-import static BoosterPacks.BoosterPacks.makeCardPath;
+import java.util.ArrayList;
 
-public class Ravage extends CustomCardMultiPreview {
+public abstract class CustomCardMultiPreview extends CustomCard {
 
-    public static final String ID = BoosterPacks.makeID(Ravage.class.getSimpleName());
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public ArrayList<AbstractCard> cardToPreview = new ArrayList<>();
+    private boolean renderTip;
+    private final int[] xSingle = new int[]{0, -280, -280};
+    private final int[] ySingle = new int[]{0, 0, -360};
+    private final int[] xMulti = new int[]{0, 0, 280};
+    private final int[] yMulti = new int[]{0, 360, 360};
 
-    public static final String IMG = makeCardPath("Attack.png");
+    public CustomCardMultiPreview(final String id,
+                                  final String name,
+                                  final String img,
+                                  final int cost,
+                                  final String rawDescription,
+                                  final CardType type,
+                                  final CardColor color,
+                                  final CardRarity rarity,
+                                  final CardTarget target){
 
-    public static final String NAME = cardStrings.NAME;
-    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = CardColor.COLORLESS;
-    private static final int COST = 1;
-
-    public Ravage() {
-        super(ID, NAME, IMG, COST, DESCRIPTION, TYPE, COLOR, RARITY, TARGET);
-        this.baseDamage = 16;
-        this.damage = this.baseDamage;
-        this.exhaust = true;
-        this.selfRetain = true;
-        this.cardToPreview.add(new Wound());
-        this.cardToPreview.add(new Dazed());
+        super(id, name, img, cost, rawDescription, type, color, rarity, target);
+        this.cardsToPreview = this;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        this.addToBot(new MakeTempCardInDrawPileAction(new Wound(), 1, true, false));
-        this.addToBot(new MakeTempCardInDrawPileAction(new Dazed(), 1, true, false));
+    public void renderCardPreviewInSingleView(SpriteBatch sb) {
+        for (int i = 0; i < cardToPreview.size(); i++) {
+            this.cardToPreview.get(i).current_x = (485.0F + this.xSingle[i]) * Settings.scale;
+            this.cardToPreview.get(i).current_y = (795.0F + this.ySingle[i]) * Settings.scale;
+            this.cardToPreview.get(i).drawScale = 0.8F;
+            this.cardToPreview.get(i).render(sb);
+        }
     }
 
     @Override
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-            this.upgradeDamage(6);
-            initializeDescription();
+    public void renderCardPreview(SpriteBatch sb) {
+        for (int i = 0; i < cardToPreview.size(); i++) {
+            if (AbstractDungeon.player == null || !AbstractDungeon.player.isDraggingCard) {
+                float tmpScale = this.drawScale * 0.8F;
+                if (this.current_x > (float)Settings.WIDTH * 0.75F) {
+                    this.cardToPreview.get(i).current_x = (this.current_x + (IMG_WIDTH / 2.0F + IMG_WIDTH / 2.0F * 0.8F + 16.0F) - this.xMulti[i] * Settings.scale) * this.drawScale;
+                } else {
+                    this.cardToPreview.get(i).current_x = (this.current_x - (IMG_WIDTH / 2.0F + IMG_WIDTH / 2.0F * 0.8F + 16.0F) + this.xMulti[i] * Settings.scale) * this.drawScale;
+                }
+                this.cardToPreview.get(i).current_y = (this.current_y + (IMG_HEIGHT / 2.0F - IMG_HEIGHT / 2.0F * 0.8F) + this.yMulti[i] * Settings.scale) * this.drawScale;
+                this.cardToPreview.get(i).drawScale = tmpScale;
+                this.cardToPreview.get(i).render(sb);
+            }
         }
     }
 }
